@@ -1,0 +1,125 @@
+<div class="Home-Container">
+    <p class="cityNameRegion">
+        {{ cityweatherData?.location?.name }},
+        {{ cityweatherData?.location?.region }}
+
+    </p>
+    <div class="addfavdiv">
+        <img src="../../../assets/images/favourite_icon_copy.png" alt="favourite" class="favourite_icon" />
+        <!-- *ngIf="cityweatherData?.favourite === false" -->
+        <!-- <img
+
+        src="../../../assets/images/icon_favourite_Active.png"
+        alt="favourite"
+        class="favourite_icon"
+       
+      /> -->
+        <!-- *ngIf="cityweatherData?.favourite === true" -->
+        <p class="addfavp">Add to favourite</p>
+    </div>
+    <div class="weatherdiv">
+        <img src="https:{{ cityweatherData?.current?.condition.icon }}" alt="weather_icon" class="weather_icon" />
+
+        <div class="temp-section" *ngIf="tempStatus === 'Fahreneit'">
+            <div class="notext">
+                {{ (cityweatherData?.current?.temp_f).toFixed(0) }}
+
+            </div>
+            <div class="temp-celcius-section">
+                <div class="temp-celcius-section-div" (click)="convertToCelcius()">
+                    <p class="celcius-deg-unit">°</p>
+                    <p class="celcius-deg-text">C</p>
+                </div>
+                <div class="temp-fahren-section-div">
+                    <div class="temp-sub-section">
+                        <p class="fahren-deg-unit">°</p>
+                        <p class="fahren-deg-text">F</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="temp-section" *ngIf="tempStatus === 'Celcius'">
+            <div class="notext">
+                {{ (cityweatherData?.current?.temp_c).toFixed(0) }}
+
+            </div>
+            <div class="temp-celcius-section">
+                <div class="temp-fahren-section-div" (click)="convertToFahreneit()">
+                    <div class="temp-sub-section">
+                        <p class="fahren-deg-unit">°</p>
+                        <p class="fahren-deg-text">C</p>
+                    </div>
+                </div>
+                <div class="temp-celcius-section-div">
+                    <p class="celcius-deg-unit">°</p>
+                    <p class="celcius-deg-text">F</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="temp_description-content">
+            {{ cityweatherData?.current?.condition?.text }}
+
+        </div>
+    </div>
+    <div class="line-copy"></div>
+    <div class="footer-container">
+        <div class="footer-container-div">
+            <img src="../../../assets/images/icon_temperature_info.png" alt="icon_temp" class="icon_temp" />
+            <div class="footer-container-divin">
+                <div class="footer-container-text1">Min - Max</div>
+                <div class="footer-container-text2">
+                    {{ cityweatherData?.current?.temp_c }}°-{{
+                    cityweatherData?.current?.temp_c
+                    }}°
+
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-container-div">
+            <img src="../../../assets/images/icon_precipitation_info.png" alt="icon_prec" class="icon_prec" />
+            <div class="footer-container-divin">
+                <div class="footer-container-text1">Precipitation</div>
+                <div class="footer-container-text2">
+                    {{ cityweatherData?.current?.precip_mm }}%
+
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-container-div">
+            <img src="../../../assets/images/icon_humidity_info.png" alt="icon_humi" class="icon_humi" />
+            <div class="footer-container-divin">
+                <div class="footer-container-text1">Humidity</div>
+                <div class="footer-container-text2">
+                    {{ cityweatherData?.current?.humidity }}%
+
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-container-div">
+            <img src="../../../assets/images/icon_wind_info.png" alt="icon_wind" class="icon_wind" />
+            <div class="footer-container-divin">
+                <div class="footer-container-text1">Wind</div>
+                <div class="footer-container-text2">
+                    {{ cityweatherData?.current?.wind_mph }}mph
+
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-container-div">
+            <img src="../../../assets/images/icon_visibility_info.png" alt="icon_vis" class="icon_vis" />
+            <div class="footer-container-divin">
+                <div class="footer-container-text1">Visibility</div>
+                <div class="footer-container-text2">
+                    {{ cityweatherData?.current?.vis_miles }} mph
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
