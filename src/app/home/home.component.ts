@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HomeService } from '../services/home.service';
 import { WeatherService } from '../services/weather.service';
 
 @Component({
@@ -9,14 +10,53 @@ import { WeatherService } from '../services/weather.service';
 export class HomeComponent implements OnInit {
   tempStatus: string = 'Celcius';
   cityweatherData: any;
-  constructor(private weatherService: WeatherService) {}
+  favCityData: any;
+  value: any;
+  favCityNames: any;
+  favState: any = false;
+  favStateUpdated: any = 'false';
+  favDetails: any;
+  favDetailsUpdated: any;
+  constructor(
+    private weatherService: WeatherService,
+    private homeService: HomeService
+  ) {}
   ngOnInit(): void {
     this.cityWeatherDetails();
   }
   cityWeatherDetails() {
     this.weatherService.cityLists$.subscribe((cityData) => {
-      console.log('in home', cityData);
-      this.cityweatherData = cityData;
+      this.favDetails = localStorage.getItem('FavouritesList');
+      if (this.favDetails !== null) {
+        this.favDetailsUpdated = JSON.parse(this.favDetails);
+
+        if (this.favDetailsUpdated.length > 0) {
+          this.favDetailsUpdated.map((item: any) => {
+            if (
+              item?.weatherData?.location?.name ===
+              cityData?.weatherData?.location?.name
+            ) {
+              cityData = {
+                isFav: true,
+                isRecent: cityData.isRecent,
+                weatherData: cityData.weatherData,
+              };
+              this.cityweatherData = cityData;
+              localStorage.setItem('WeatherDetails', JSON.stringify(cityData));
+            } else {
+              this.cityweatherData = cityData;
+              localStorage.setItem('WeatherDetails', JSON.stringify(cityData));
+            }
+          });
+        } else {
+          this.cityweatherData = cityData;
+          localStorage.setItem('WeatherDetails', JSON.stringify(cityData));
+        }
+      } else {
+        this.cityweatherData = cityData;
+
+        localStorage.setItem('WeatherDetails', JSON.stringify(cityData));
+      }
     });
   }
   convertToFahreneit() {
@@ -24,5 +64,12 @@ export class HomeComponent implements OnInit {
   }
   convertToCelcius() {
     this.tempStatus = 'Celcius';
+  }
+
+  addToFav(data: any) {
+    this.homeService.addToFavourite(data);
+  }
+  removeFromFav(data: any) {
+    this.homeService.deleteFavItem(data);
   }
 }

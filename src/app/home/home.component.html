@@ -1,32 +1,26 @@
 <div class="Home-Container">
     <p class="cityNameRegion">
-        {{ cityweatherData?.location?.name }},
-        {{ cityweatherData?.location?.region }}
-
+        {{ cityweatherData?.weatherData?.location?.name }},
+        {{ cityweatherData?.weatherData?.location?.region }}
     </p>
     <div class="addfavdiv">
-        <img src="../../../assets/images/favourite_icon_copy.png" alt="favourite" class="favourite_icon" />
-        <!-- *ngIf="cityweatherData?.favourite === false" -->
-        <!-- <img
-
-        src="../../../assets/images/icon_favourite_Active.png"
-        alt="favourite"
-        class="favourite_icon"
-       
-      /> -->
-        <!-- *ngIf="cityweatherData?.favourite === true" -->
+        <img *ngIf="cityweatherData?.isFav === false" src="../../../assets/images/favourite_icon_copy.png"
+            alt="favourite" class="favourite_icon" (click)="addToFav(cityweatherData)" />
+        <img *ngIf="cityweatherData?.isFav === true" src="../../../assets/images/icon_favourite_Active.png"
+            alt="favourite" class="favourite_icon" (click)="removeFromFav(cityweatherData)" />
         <p class="addfavp">Add to favourite</p>
     </div>
     <div class="weatherdiv">
-        <img src="https:{{ cityweatherData?.current?.condition.icon }}" alt="weather_icon" class="weather_icon" />
+        <img src="https:{{ cityweatherData?.weatherData?.current?.condition.icon }}" alt="weather_icon"
+            class="weather_icon" />
 
         <div class="temp-section" *ngIf="tempStatus === 'Fahreneit'">
             <div class="notext">
-                {{ (cityweatherData?.current?.temp_f).toFixed(0) }}
+                {{ (cityweatherData?.weatherData?.current?.temp_f).toFixed(0) }}
 
             </div>
-            <div class="temp-celcius-section">
-                <div class="temp-celcius-section-div" (click)="convertToCelcius()">
+            <div class="temp-celcius-section" (click)="convertToCelcius()">
+                <div class="temp-celcius-section-div">
                     <p class="celcius-deg-unit">°</p>
                     <p class="celcius-deg-text">C</p>
                 </div>
@@ -38,14 +32,13 @@
                 </div>
             </div>
         </div>
-
         <div class="temp-section" *ngIf="tempStatus === 'Celcius'">
             <div class="notext">
-                {{ (cityweatherData?.current?.temp_c).toFixed(0) }}
+                {{ (cityweatherData?.weatherData?.current?.temp_c).toFixed(0) }}
 
             </div>
-            <div class="temp-celcius-section">
-                <div class="temp-fahren-section-div" (click)="convertToFahreneit()">
+            <div class="temp-celcius-section" (click)="convertToFahreneit()">
+                <div class="temp-fahren-section-div">
                     <div class="temp-sub-section">
                         <p class="fahren-deg-unit">°</p>
                         <p class="fahren-deg-text">C</p>
@@ -59,7 +52,7 @@
         </div>
 
         <div class="temp_description-content">
-            {{ cityweatherData?.current?.condition?.text }}
+            {{ cityweatherData?.weatherData?.current?.condition?.text }}
 
         </div>
     </div>
@@ -70,8 +63,8 @@
             <div class="footer-container-divin">
                 <div class="footer-container-text1">Min - Max</div>
                 <div class="footer-container-text2">
-                    {{ cityweatherData?.current?.temp_c }}°-{{
-                    cityweatherData?.current?.temp_c
+                    {{ cityweatherData?.weatherData?.current?.temp_c }}°-{{
+                    cityweatherData?.weatherData?.current?.temp_c
                     }}°
 
                 </div>
@@ -83,7 +76,7 @@
             <div class="footer-container-divin">
                 <div class="footer-container-text1">Precipitation</div>
                 <div class="footer-container-text2">
-                    {{ cityweatherData?.current?.precip_mm }}%
+                    {{ cityweatherData?.weatherData?.current?.precip_mm }}%
 
                 </div>
             </div>
@@ -94,7 +87,7 @@
             <div class="footer-container-divin">
                 <div class="footer-container-text1">Humidity</div>
                 <div class="footer-container-text2">
-                    {{ cityweatherData?.current?.humidity }}%
+                    {{ cityweatherData?.weatherData?.current?.humidity }}%
 
                 </div>
             </div>
@@ -105,7 +98,7 @@
             <div class="footer-container-divin">
                 <div class="footer-container-text1">Wind</div>
                 <div class="footer-container-text2">
-                    {{ cityweatherData?.current?.wind_mph }}mph
+                    {{ cityweatherData?.weatherData?.current?.wind_mph }}mph
 
                 </div>
             </div>
@@ -116,7 +109,7 @@
             <div class="footer-container-divin">
                 <div class="footer-container-text1">Visibility</div>
                 <div class="footer-container-text2">
-                    {{ cityweatherData?.current?.vis_miles }} mph
+                    {{ cityweatherData?.weatherData?.current?.vis_miles }} mph
 
                 </div>
             </div>

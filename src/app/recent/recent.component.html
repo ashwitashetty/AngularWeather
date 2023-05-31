@@ -1,1 +1,35 @@
-<p>recent works!</p>
+<div class="recent-main">
+  <div class="nothingdiv" *ngIf="recentCityData.length === 0">
+    <img src="../../../assets/images/icon_nothing.png" alt="icon_nothing" class="icon_nothing" />
+    <div class="nothingtext">No Recent Search</div>
+  </div>
+  <div class="recent-city-section" *ngIf="recentCityData.length > 0">
+    <div>You recently searched for</div>
+    <div (click)="openDialog()">Clear All</div>
+  </div>
+  <div class="recent-card">
+    <div class="compdiv" *ngFor="let data of recentCityData" (click)="showRecentDetails(data)">
+      <div class="recent-city">
+        {{ data?.weatherData?.location?.name }},
+        {{data?.weatherData?.location?.region }}
+      </div>
+      <div class="recent-center">
+        <img src="https:{{ data?.weatherData?.current?.condition.icon }}" alt="comp_icon" class="comp_icon" />
+        <div class="recent-degree">
+          {{ (data?.weatherData?.current?.temp_c).toFixed(0) }}
+
+          <span class="recent-degree-unit">°c</span>
+        </div>
+        <div class="recent-desc">
+          {{ data?.weatherData?.current?.condition?.text }}
+
+        </div>
+      </div>
+      <img *ngIf="data?.isFav === false" src="../../../assets/images/favourite_icon_copy.png" alt="favourite"
+        class="fav_icon" (click)="addToFavourite(data)" />
+
+      <img *ngIf="data?.isFav === true" src="../../../assets/images/icon_favourite_Active.png" alt="favourite"
+        class="fav_icon" (click)="removeFromFavourite(data)" />
+    </div>
+  </div>
+</div>

@@ -1,1 +1,32 @@
-<p>favourite works!</p>
+<div class="fav-main">
+  <div class="nothingdiv" *ngIf="favCityData?.length === 0">
+    <img src="../../../assets/images/icon_nothing.png" alt="icon_nothing" class="icon_nothing" />
+    <div class="nothingtext">No Favourites added</div>
+  </div>
+  <div class="fav-city-remove-section" *ngIf="favCityData?.length > 0">
+    <div>{{ favCityData.length }} City added as favourite</div>
+    <div (click)="openDialog()">Remove All</div>
+  </div>
+  <div class="fav-card">
+    <div class="card-section" *ngFor="let data of favCityData" (click)="showFavDetails(data)">
+      <div class="card-region">
+        {{ data?.weatherData?.location?.name }}, {{ data?.weatherData?.location?.region }}
+      </div>
+      <div class="card-center-section">
+
+        <img src="https:{{ data?.weatherData?.current?.condition.icon }}"
+          src="../../assets/images/icon_mostly_sunny.png" alt="comp_icon" class="comp_icon" />
+        <div class="degree-card">
+
+          {{ (data?.weatherData?.current?.temp_c).toFixed(0) }}
+          <span class="degree-card-unit">°c</span>
+        </div>
+        <div class="card-description">
+          {{ data?.weatherData?.current?.condition?.text }}
+        </div>
+      </div>
+      <img src="../../../assets/images/icon_favourite_Active.png" alt="favourite" class="fav_icon"
+        (click)="removeFromFavList(data)" />
+    </div>
+  </div>
+</div>

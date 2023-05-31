@@ -1,1 +1,9 @@
-<p>clear-all works!</p>
+<div class="dilog">
+    <div class="are-you-sure-text">
+      Are you sure want to clear all the Recent Search?
+    </div>
+    <div mat-dialog-actions class="yes-no-button">
+      <button mat-button mat-dialog-close class="no-button">No</button>
+      <button mat-button mat-dialog-close cdkFocusInitial class="yes-button" (click)="clearRecentSearch()">Yes</button>
+    </div>
+  </div>

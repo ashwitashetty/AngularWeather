@@ -1,0 +1,101 @@
+.recent-main {
+  width: 87vw;
+  height: 74vh;
+  overflow-y: scroll;
+}
+.nothingdiv {
+  display: flex;
+  flex-direction: column;
+  width: 87vw;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.nothingtext {
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 21px;
+  text-align: center;
+  margin-top: 20px;
+  font-family: Roboto Regular;
+}
+
+.recent-city-section {
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1vw;
+  color: #ffffff;
+  font-family: Roboto Regular;
+  font-size: 18px;
+}
+
+.recent-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.compdiv {
+  height: 73px;
+  background-color: rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin-top: 1px;
+}
+
+.recent-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 400px;
+}
+
+.comp_icon {
+  height: 50px;
+  width: 50px;
+}
+.fav_icon {
+  height: 18px;
+}
+
+.recent-city {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: Roboto Regular;
+
+  width: 150px;
+}
+.recent-degree {
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 500;
+  font-family: Roboto Regular;
+  width: 80px;
+}
+.recent-degree-unit {
+  color: #ffffff;
+  font-size: 16px;
+  font-family: Roboto Light;
+}
+
+.recent-desc {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 500;
+  font-family: Roboto Regular;
+
+  display: flex;
+  text-align: center;
+  align-items: flex-start;
+  width: 210px;
+}
