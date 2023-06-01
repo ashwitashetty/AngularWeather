@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { WeatherService } from './weather.service';
@@ -17,7 +16,6 @@ export class HomeService {
   listUpdated: any = [];
   MainList: any = [];
   constructor(
-    private http: HttpClient,
     public router: Router,
     private weatherService: WeatherService,
   ) {}

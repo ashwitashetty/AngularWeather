@@ -34,7 +34,6 @@ export class HeaderComponent implements OnInit {
   handleCityClick(city: any) {
     this.weatherServices.fetchWeatherApi(city);
     this.router.navigate(['/']);
-
     this.cityResults = [];
   }
 }

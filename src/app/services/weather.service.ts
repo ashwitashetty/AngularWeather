@@ -8,7 +8,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class WeatherService {
-
   cityWeatherData: BehaviorSubject<any> = new BehaviorSubject<any>([]);
   cityLists$: Observable<any> = this.cityWeatherData.asObservable();
   citySearchData: BehaviorSubject<any> = new BehaviorSubject<any>([]);
@@ -16,10 +15,7 @@ export class WeatherService {
   AllData: BehaviorSubject<any> = new BehaviorSubject<any>([]);
   AlldataLists$: Observable<any> = this.AllData.asObservable();
   MainListUpdate: any = [];
-  constructor(
-    private http: HttpClient,
-    public router: Router,
-  ) {}
+  constructor(private http: HttpClient, public router: Router) {}
 
   ngOnInit(): void {}
   fetchWeatherApi(city: string) {
@@ -60,8 +56,8 @@ export class WeatherService {
           isRecent: true,
           weatherData: data.weatherData,
         };
-        // this.MainListUpdate.push(data);
-        this.MainListUpdate.splice(0,0,data)
+
+        this.MainListUpdate.splice(0, 0, data);
         this.AllData.next(this.MainListUpdate);
         localStorage.setItem(
           'MainWeatherList',
@@ -75,8 +71,8 @@ export class WeatherService {
         isRecent: true,
         weatherData: data.weatherData,
       };
-      // this.MainListUpdate.push(data);
-      this.MainListUpdate.splice(0,0,data)
+
+      this.MainListUpdate.splice(0, 0, data);
       this.AllData.next(this.MainListUpdate);
       localStorage.setItem(
         'MainWeatherList',
