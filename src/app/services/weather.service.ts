@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { environment } from '../environment';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -15,7 +14,7 @@ export class WeatherService {
   AllData: BehaviorSubject<any> = new BehaviorSubject<any>([]);
   AlldataLists$: Observable<any> = this.AllData.asObservable();
   MainListUpdate: any = [];
-  constructor(private http: HttpClient, public router: Router) {}
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {}
   fetchWeatherApi(city: string) {
@@ -43,6 +42,7 @@ export class WeatherService {
       });
 
       if (cityName.includes(data?.weatherData?.location?.name)) {
+        console.log('first')
         data = {
           isFav: true,
           isRecent: true,

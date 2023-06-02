@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { WeatherService } from './weather.service';
 
@@ -15,21 +14,19 @@ export class HomeService {
   list: any = [];
   listUpdated: any = [];
   MainList: any = [];
-  constructor(
-    public router: Router,
-    private weatherService: WeatherService,
-  ) {}
+  constructor(private weatherService: WeatherService) {}
 
   addToFavourite(data: any) {
     const value = localStorage.getItem('FavouritesList');
     const list = localStorage.getItem('MainWeatherList');
     if (list !== null) {
       this.MainList = JSON.parse(list);
-      this.MainList.map((i: any) => {
+      this.MainList.map((item: any) => {
         if (
-          i?.weatherData?.location?.name === data?.weatherData?.location?.name
+          item?.weatherData?.location?.name ===
+          data?.weatherData?.location?.name
         ) {
-          i.isFav = true;
+          item.isFav = true;
         }
         this.weatherService.AllData.next(this.MainList);
         localStorage.setItem('MainWeatherList', JSON.stringify(this.MainList));
@@ -59,7 +56,7 @@ export class HomeService {
         };
         this.weatherService.cityWeatherData.next(data);
         localStorage.setItem('WeatherDetails', JSON.stringify(data));
-        this.FavList.splice(0,0,data)
+        this.FavList.splice(0, 0, data);
         this.favouriteData.next(this.FavList);
         localStorage.setItem('FavouritesList', JSON.stringify(this.FavList));
       }
@@ -71,7 +68,7 @@ export class HomeService {
       };
       this.weatherService.cityWeatherData.next(data);
       localStorage.setItem('WeatherDetails', JSON.stringify(data));
-      this.FavList.splice(0,0,data)
+      this.FavList.splice(0, 0, data);
       this.favouriteData.next(this.FavList);
       localStorage.setItem('FavouritesList', JSON.stringify(this.FavList));
     }
@@ -83,7 +80,8 @@ export class HomeService {
       this.MainList = JSON.parse(Mainlist);
       this.MainList.map((item: any) => {
         if (
-          item?.weatherData?.location?.name === data?.weatherData?.location?.name
+          item?.weatherData?.location?.name ===
+          data?.weatherData?.location?.name
         ) {
           item.isFav = false;
         }

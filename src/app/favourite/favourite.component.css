@@ -1,7 +1,7 @@
 .fav-main {
   width: 87vw;
   height: 79vh;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 .nothingdiv {
   display: flex;
@@ -37,7 +37,8 @@
 .fav-card {
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  overflow-y: scroll;
+  height: 639px;
 }
 
 .card-section {

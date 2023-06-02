@@ -20,8 +20,10 @@ export class RemoveAllComponent implements OnInit {
     const Mainlist = localStorage.getItem('MainWeatherList');
     if (Mainlist !== null) {
       this.MainList = JSON.parse(Mainlist);
-      this.MainList.map((id: number) => {
-        this.MainList[id].isFav = false;
+      let i = 0;
+      this.MainList.map(() => {
+        this.MainList[i].isFav = false;
+        i=i+1;
         this.weatherService.AllData.next(this.MainList);
         localStorage.setItem('MainWeatherList', JSON.stringify(this.MainList));
       });

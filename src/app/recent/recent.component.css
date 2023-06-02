@@ -1,7 +1,6 @@
 .recent-main {
   width: 87vw;
-  height: 74vh;
-  overflow-y: scroll;
+  height: 78vh;
 }
 .nothingdiv {
   display: flex;
@@ -37,6 +36,8 @@
 .recent-card {
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
+ height: 639px;
 }
 
 .compdiv {
@@ -73,7 +74,7 @@
   font-weight: 500;
   font-family: Roboto Regular;
 
-  width: 150px;
+  width: 180px;
 }
 .recent-degree {
   color: #ffffff;
